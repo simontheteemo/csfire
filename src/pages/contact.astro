@@ -1,0 +1,71 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import { company } from '../data/site';
+
+const methods = [
+  {
+    label: 'Call us',
+    value: company.phone,
+    href: company.phoneHref,
+    note: company.hours,
+    icon: '<path d="M6.6 10.8a15 15 0 0 0 6.6 6.6l2.2-2.2a1 1 0 0 1 1-.24 11 11 0 0 0 3.5.56 1 1 0 0 1 1 1V20a1 1 0 0 1-1 1A17 17 0 0 1 3 4a1 1 0 0 1 1-1h3.5a1 1 0 0 1 1 1c0 1.2.2 2.4.56 3.5a1 1 0 0 1-.25 1z"/>',
+  },
+  {
+    label: 'Email us',
+    value: company.email,
+    href: `mailto:${company.email}`,
+    note: 'We aim to reply within one business day',
+    icon: '<rect x="3" y="5" width="18" height="14" rx="2" fill="none" stroke="currentColor" stroke-width="2"/><path d="m4 7 8 6 8-6" fill="none" stroke="currentColor" stroke-width="2"/>',
+  },
+  {
+    label: 'Service area',
+    value: company.area,
+    note: 'On-site audits and callouts across the region',
+    icon: '<path d="M12 21s7-6 7-12a7 7 0 0 0-14 0c0 6 7 12 7 12z" fill="none" stroke="currentColor" stroke-width="2"/><circle cx="12" cy="9" r="2.5" fill="none" stroke="currentColor" stroke-width="2"/>',
+  },
+];
+---
+<BaseLayout
+  title="Contact | CS Fire — Fire Protection NZ"
+  description="Get in touch with CS Fire for a free fire safety site audit, a quote, or to take over your existing service contract."
+>
+  <section class="border-b border-ink-700 bg-gradient-to-b from-ink-900 to-ink-950">
+    <div class="mx-auto max-w-6xl px-6 py-20 md:py-24">
+      <p class="text-xs font-bold tracking-[0.14em] uppercase text-red-500">Contact</p>
+      <h1 class="mt-4 text-4xl md:text-6xl max-w-[16ch]">Let's make your building compliant.</h1>
+      <p class="mt-6 text-lg text-paper/75 max-w-2xl leading-relaxed">
+        Book a free, no-obligation site audit and we'll show you exactly where you stand —
+        or get in touch for a quote on any of our services.
+      </p>
+    </div>
+  </section>
+
+  <section class="mx-auto max-w-6xl px-6 py-20">
+    <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-[18px]">
+      {methods.map((m) => (
+        <div class="bg-ink-900 border border-ink-700 p-8">
+          <span class="flex items-center justify-center border border-red-500 text-red-500 mb-5" style="width:52px;height:52px">
+            <svg width="26" height="26" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true" set:html={m.icon}></svg>
+          </span>
+          <h2 class="text-sm normal-case font-body font-bold uppercase tracking-[0.1em] text-muted">{m.label}</h2>
+          {m.href
+            ? <a href={m.href} class="mt-2 block text-xl font-bold text-paper hover:text-red-500 transition-colors break-words">{m.value}</a>
+            : <p class="mt-2 text-xl font-bold text-paper">{m.value}</p>}
+          <p class="mt-3 text-sm text-paper/60 leading-relaxed">{m.note}</p>
+        </div>
+      ))}
+    </div>
+
+    {/* TODO(contact): replace placeholder phone/email/address above with real
+        client details, then remove this note. */}
+    <div class="mt-12 bg-red-500 text-white p-8 md:p-10 flex flex-col md:flex-row md:items-center md:justify-between gap-6">
+      <div>
+        <h2 class="text-2xl md:text-3xl">Already under contract elsewhere?</h2>
+        <p class="mt-2 text-white/90 max-w-xl">We'll take it over seamlessly — no extra cost, no lock-in.</p>
+      </div>
+      <a href={company.phoneHref} class="inline-flex items-center gap-2.5 bg-ink-950 hover:bg-black text-white px-7 py-4 font-bold tracking-wide transition-colors whitespace-nowrap self-start md:self-auto">
+        Call {company.phone}
+      </a>
+    </div>
+  </section>
+</BaseLayout>

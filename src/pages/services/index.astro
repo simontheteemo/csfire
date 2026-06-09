@@ -1,0 +1,29 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import ServiceCard from '../../components/ServiceCard.astro';
+import CTABand from '../../components/CTABand.astro';
+import { services } from '../../data/services';
+---
+<BaseLayout
+  title="Services | CS Fire — Fire Protection NZ"
+  description="Fire alarm systems, sprinkler systems, extinguishers and training, and BWOF compliance — complete fire protection from CS Fire."
+>
+  <section class="border-b border-ink-700 bg-gradient-to-b from-ink-900 to-ink-950">
+    <div class="mx-auto max-w-6xl px-6 py-20 md:py-24">
+      <p class="text-xs font-bold tracking-[0.14em] uppercase text-red-500">What we do</p>
+      <h1 class="mt-4 text-4xl md:text-6xl max-w-[16ch]">Complete fire protection services.</h1>
+      <p class="mt-6 text-lg text-paper/75 max-w-2xl leading-relaxed">
+        From a single extinguisher to a fully monitored, sprinklered facility — we design,
+        deliver, certify and maintain it all, so you only deal with one team.
+      </p>
+    </div>
+  </section>
+
+  <section class="mx-auto max-w-6xl px-6 py-20">
+    <div class="grid sm:grid-cols-2 gap-[18px]">
+      {services.map((service) => <ServiceCard service={service} />)}
+    </div>
+  </section>
+
+  <CTABand />
+</BaseLayout>

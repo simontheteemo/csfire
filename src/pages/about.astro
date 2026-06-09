@@ -1,0 +1,66 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import StatBar from '../components/StatBar.astro';
+import CTABand from '../components/CTABand.astro';
+import { company } from '../data/site';
+
+const values = [
+  { t: 'Reliability', d: 'When it comes to fire safety there is no margin for error. We do the job properly, the first time, every time.' },
+  { t: 'Compliance made simple', d: 'We carry the burden of certificates, schemes and deadlines so you can get on with running your business.' },
+  { t: 'One trusted team', d: 'Detection, suppression, equipment and certification — handled by people who know your building.' },
+  { t: 'Always responsive', d: 'A 24/7 emergency callout and people who actually answer the phone when it matters most.' },
+];
+---
+<BaseLayout
+  title="About | CS Fire — Fire Protection NZ"
+  description="Control & Service Fire Ltd (CS Fire) is a New Zealand fire protection and compliance company built on reliability, responsiveness and stress-free compliance."
+>
+  <section class="border-b border-ink-700 bg-gradient-to-b from-ink-900 to-ink-950">
+    <div class="mx-auto max-w-6xl px-6 py-20 md:py-24">
+      <p class="text-xs font-bold tracking-[0.14em] uppercase text-red-500">About us</p>
+      <h1 class="mt-4 text-4xl md:text-6xl max-w-[18ch]">Fire protection you can trust.</h1>
+      <p class="mt-6 text-lg text-paper/75 max-w-2xl leading-relaxed">
+        {company.legalName} keeps commercial and industrial buildings across {company.area}
+        safe and compliant — combining sound engineering with practical, cost-effective service.
+      </p>
+    </div>
+  </section>
+
+  <StatBar />
+
+  <section class="mx-auto max-w-6xl px-6 py-20 grid lg:grid-cols-[1fr_1fr] gap-12 lg:gap-16">
+    <div>
+      <h2 class="text-3xl md:text-4xl">Our story</h2>
+      <div class="mt-6 space-y-4 text-paper/80 leading-relaxed">
+        <p>
+          CS Fire was built on a simple idea: fire safety compliance should be straightforward,
+          dependable and stress-free. For decades we've helped building owners and managers
+          protect what matters most — their people, their property and their peace of mind.
+        </p>
+        <p>
+          From fire alarms and sprinkler systems to extinguishers, training and Building Warrant
+          of Fitness compliance, we deliver the full picture under one roof. That means fewer
+          contractors to juggle, clearer accountability, and systems that actually work when called upon.
+        </p>
+        <p>
+          Already under a service agreement elsewhere? We can take over your existing contract
+          seamlessly, at no extra cost and with no long-term lock-in.
+        </p>
+      </div>
+    </div>
+
+    <div>
+      <h2 class="text-3xl md:text-4xl">What we stand for</h2>
+      <div class="mt-6 grid sm:grid-cols-2 gap-4">
+        {values.map((v) => (
+          <div class="bg-ink-900 border border-ink-700 p-6">
+            <h3 class="text-lg normal-case font-body font-bold tracking-normal">{v.t}</h3>
+            <p class="mt-2 text-sm text-paper/65 leading-relaxed">{v.d}</p>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <CTABand />
+</BaseLayout>

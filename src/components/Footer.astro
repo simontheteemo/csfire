@@ -1,0 +1,45 @@
+---
+import { base } from '../config';
+import { company, nav } from '../data/site';
+import { services } from '../data/services';
+
+const year = new Date().getFullYear();
+---
+<footer class="border-t border-ink-700 bg-ink-950">
+  <div class="mx-auto max-w-6xl px-6 py-14 grid gap-10 md:grid-cols-[1.4fr_1fr_1fr]">
+    <div>
+      <a href={`${base}/`} class="flex items-center gap-3">
+        <img src={`${base}/mark-white.png`} alt="CS Fire logo" class="h-10 w-auto" />
+        <span class="font-display text-[24px] tracking-wide">CS <span class="text-red-500">FIRE</span></span>
+      </a>
+      <p class="mt-4 text-sm text-muted max-w-sm leading-relaxed">
+        {company.legalName} — fire protection &amp; compliance for {company.area}.
+      </p>
+    </div>
+
+    <div>
+      <h3 class="font-body text-xs font-bold uppercase tracking-[0.12em] text-muted normal-case">Explore</h3>
+      <ul class="mt-4 space-y-2.5 text-sm">
+        {nav.filter((n) => n.href !== '/').map(({ href, label }) => (
+          <li><a href={`${base}${href}`} class="text-paper/80 hover:text-red-500 transition-colors">{label}</a></li>
+        ))}
+      </ul>
+    </div>
+
+    <div>
+      <h3 class="font-body text-xs font-bold uppercase tracking-[0.12em] text-muted normal-case">Services</h3>
+      <ul class="mt-4 space-y-2.5 text-sm">
+        {services.map((s) => (
+          <li><a href={`${base}/services/${s.slug}`} class="text-paper/80 hover:text-red-500 transition-colors">{s.name}</a></li>
+        ))}
+      </ul>
+    </div>
+  </div>
+
+  <div class="border-t border-ink-700">
+    <div class="mx-auto max-w-6xl px-6 py-5 flex flex-col sm:flex-row gap-2 justify-between text-xs text-muted">
+      <p>&copy; {year} {company.legalName}. All rights reserved.</p>
+      <p>{company.phone} · {company.email}</p>
+    </div>
+  </div>
+</footer>

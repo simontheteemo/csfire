@@ -1,0 +1,54 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import { company } from '../data/site';
+---
+<BaseLayout
+  title="Privacy Policy | CS Fire"
+  description="How Control & Service Fire Ltd collects, uses and protects your personal information."
+>
+  <section class="mx-auto max-w-3xl px-6 py-20 md:py-24">
+    <h1 class="text-4xl md:text-5xl">Privacy Policy</h1>
+    <p class="mt-4 text-sm text-muted">Last updated: June 2026</p>
+
+    <div class="mt-10 space-y-8 text-paper/80 leading-relaxed">
+      <p>
+        {company.legalName} ("CS Fire", "we", "us") is committed to protecting your privacy.
+        This policy explains how we collect, use and safeguard your personal information in
+        accordance with the New Zealand Privacy Act 2020.
+      </p>
+
+      <div>
+        <h2 class="text-xl normal-case font-body font-bold tracking-normal text-paper">Information we collect</h2>
+        <p class="mt-3">
+          We collect information you provide directly — such as your name, contact details and
+          building information — when you request a quote, book an audit, or get in touch with us.
+        </p>
+      </div>
+
+      <div>
+        <h2 class="text-xl normal-case font-body font-bold tracking-normal text-paper">How we use it</h2>
+        <p class="mt-3">
+          We use your information to respond to enquiries, provide quotes and services, manage
+          ongoing service agreements, and meet our compliance and legal obligations. We do not
+          sell your personal information.
+        </p>
+      </div>
+
+      <div>
+        <h2 class="text-xl normal-case font-body font-bold tracking-normal text-paper">Keeping it secure</h2>
+        <p class="mt-3">
+          We take reasonable steps to protect your information from loss, misuse and unauthorised
+          access. We retain it only for as long as necessary for the purposes described above.
+        </p>
+      </div>
+
+      <div>
+        <h2 class="text-xl normal-case font-body font-bold tracking-normal text-paper">Your rights</h2>
+        <p class="mt-3">
+          You may request access to, or correction of, the personal information we hold about you
+          at any time by contacting us at <a href={`mailto:${company.email}`} class="text-red-500 hover:underline">{company.email}</a>.
+        </p>
+      </div>
+    </div>
+  </section>
+</BaseLayout>

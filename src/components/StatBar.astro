@@ -1,0 +1,18 @@
+---
+const stats = [
+  { n: '30+', l: 'Years protecting NZ' },
+  { n: '24/7', l: 'Emergency callout' },
+  { n: '100%', l: 'BWOF compliance' },
+  { n: 'IQP', l: 'Registered inspectors' },
+];
+---
+<section class="border-y border-ink-700 bg-ink-900">
+  <div class="mx-auto max-w-6xl px-6 grid grid-cols-2 md:grid-cols-4">
+    {stats.map(({ n, l }, i) => (
+      <div class:list={["py-8 md:py-9", i > 0 && "md:border-l border-ink-700"]}>
+        <div class="font-display text-4xl md:text-[44px] text-red-500 leading-none">{n}</div>
+        <div class="mt-2 text-[13px] text-muted uppercase tracking-[0.06em] font-semibold">{l}</div>
+      </div>
+    ))}
+  </div>
+</section>

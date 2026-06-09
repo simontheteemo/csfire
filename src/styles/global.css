@@ -1,0 +1,41 @@
+/* Google Fonts — Anton (display) + Inter (body) */
+@import url('https://fonts.googleapis.com/css2?family=Anton&family=Inter:wght@400;500;600;700&display=swap');
+
+@import "tailwindcss";
+
+@theme {
+  /* Brand — fire red + charcoal on near-black ink. Swap to rebrand. */
+  --color-red-500: #ED1C24;
+  --color-red-600: #C5141B;
+  --color-red-700: #A11016;
+
+  --color-ink-950: #0C0C0D; /* page background */
+  --color-ink-900: #16171A; /* raised surface */
+  --color-ink-800: #1F2024; /* hover surface */
+  --color-ink-700: #26282C; /* hairline borders */
+  --color-ink-600: #3A3C41; /* stronger borders */
+
+  --color-charcoal: #484848; /* brand grey (logo) */
+  --color-paper:    #FAFAF9; /* primary text on dark */
+  --color-muted:    #8A8C90; /* secondary text */
+
+  /* Fonts */
+  --font-display: 'Anton', 'Arial Narrow', sans-serif;
+  --font-body: 'Inter', system-ui, sans-serif;
+}
+
+html {
+  font-family: var(--font-body);
+  color: var(--color-paper);
+  background: var(--color-ink-950);
+  scroll-behavior: smooth;
+  -webkit-font-smoothing: antialiased;
+}
+
+h1, h2, h3 {
+  font-family: var(--font-display);
+  font-weight: 400;
+  text-transform: uppercase;
+  letter-spacing: 0.005em;
+  line-height: 0.98;
+}

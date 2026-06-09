@@ -1,0 +1,24 @@
+---
+import { base } from '../config';
+import type { Service } from '../data/services';
+
+interface Props {
+  service: Service;
+}
+const { service } = Astro.props;
+---
+<a
+  href={`${base}/services/${service.slug}`}
+  class="group relative block bg-ink-900 border border-ink-700 p-8 overflow-hidden transition-all hover:border-ink-600 hover:-translate-y-1"
+>
+  <span class="absolute left-0 top-0 h-1 w-full bg-red-500 origin-left scale-x-0 group-hover:scale-x-100 transition-transform"></span>
+  <span class="flex items-center justify-center w-13 h-13 border border-red-500 text-red-500 mb-5" style="width:52px;height:52px">
+    <svg width="26" height="26" viewBox="0 0 24 24" aria-hidden="true" set:html={service.icon}></svg>
+  </span>
+  <h3 class="text-xl font-bold tracking-normal normal-case font-body">{service.name}</h3>
+  <p class="mt-2.5 text-[14.5px] leading-relaxed text-paper/60">{service.short}</p>
+  <span class="mt-4 inline-flex items-center gap-1.5 text-xs font-bold uppercase tracking-[0.06em] text-red-500">
+    Learn more
+    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" aria-hidden="true"><path d="M5 12h13m0 0-5-5m5 5-5 5"/></svg>
+  </span>
+</a>

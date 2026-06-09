@@ -1,0 +1,79 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import CTABand from '../../components/CTABand.astro';
+import { base } from '../../config';
+import { services } from '../../data/services';
+
+export function getStaticPaths() {
+  return services.map((service) => ({
+    params: { slug: service.slug },
+    props: { service },
+  }));
+}
+
+const { service } = Astro.props;
+const others = services.filter((s) => s.slug !== service.slug);
+---
+<BaseLayout
+  title={`${service.name} | CS Fire`}
+  description={service.short}
+>
+  {/* Hero */}
+  <section class="relative overflow-hidden border-b border-ink-700">
+    <div
+      class="absolute inset-0"
+      style="background:
+        radial-gradient(800px 460px at 82% -20%, rgba(237,28,36,.26), transparent 60%),
+        linear-gradient(180deg,#0C0C0D,#141417)"
+    ></div>
+    <div class="relative mx-auto max-w-6xl px-6 py-20 md:py-24">
+      <a href={`${base}/services`} class="inline-flex items-center gap-1.5 text-xs font-bold uppercase tracking-[0.1em] text-muted hover:text-paper transition-colors">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" aria-hidden="true"><path d="M19 12H6m0 0 5 5m-5-5 5-5"/></svg>
+        All services
+      </a>
+      <div class="mt-6 flex items-center gap-4">
+        <span class="flex items-center justify-center border border-red-500 text-red-500" style="width:60px;height:60px">
+          <svg width="30" height="30" viewBox="0 0 24 24" aria-hidden="true" set:html={service.icon}></svg>
+        </span>
+        <h1 class="text-4xl md:text-6xl">{service.name}</h1>
+      </div>
+      <p class="mt-6 text-lg md:text-xl text-paper/75 max-w-2xl leading-relaxed">{service.tagline}</p>
+    </div>
+  </section>
+
+  {/* Body */}
+  <section class="mx-auto max-w-6xl px-6 py-18 md:py-20 grid lg:grid-cols-[1.3fr_1fr] gap-12 lg:gap-16">
+    <div>
+      <p class="text-lg text-paper/80 leading-relaxed">{service.intro}</p>
+
+      <h2 class="mt-12 text-2xl normal-case font-body font-bold tracking-normal">What we do</h2>
+      <ul class="mt-6 space-y-4">
+        {service.features.map((f) => (
+          <li class="flex gap-3.5">
+            <svg class="flex-none mt-0.5 text-red-500" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 12l2 2 4-4"/><circle cx="12" cy="12" r="9"/></svg>
+            <span class="text-paper/80 leading-relaxed">{f}</span>
+          </li>
+        ))}
+      </ul>
+    </div>
+
+    {/* Aside */}
+    <aside class="lg:pt-1">
+      <div class="bg-ink-900 border border-ink-700 p-7">
+        <h2 class="text-lg normal-case font-body font-bold tracking-normal">Other services</h2>
+        <ul class="mt-5 divide-y divide-ink-700">
+          {others.map((o) => (
+            <li>
+              <a href={`${base}/services/${o.slug}`} class="group flex items-center justify-between gap-3 py-3.5 text-paper/80 hover:text-paper transition-colors">
+                <span class="font-semibold">{o.name}</span>
+                <svg class="flex-none text-muted group-hover:text-red-500 transition-colors" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" aria-hidden="true"><path d="M5 12h13m0 0-5-5m5 5-5 5"/></svg>
+              </a>
+            </li>
+          ))}
+        </ul>
+      </div>
+    </aside>
+  </section>
+
+  <CTABand heading={`Need ${service.name.toLowerCase()} for your building?`} cta="Request a quote" />
+</BaseLayout>

@@ -1,0 +1,79 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import StatBar from '../components/StatBar.astro';
+import ServiceCard from '../components/ServiceCard.astro';
+import CTABand from '../components/CTABand.astro';
+import { base } from '../config';
+import { company } from '../data/site';
+import { services } from '../data/services';
+
+const schema = JSON.stringify({
+  '@context': 'https://schema.org',
+  '@type': 'FireProtectionService',
+  name: company.legalName,
+  alternateName: company.name,
+  url: company.url,
+  telephone: company.phone,
+  email: company.email,
+  description:
+    'New Zealand fire protection and compliance company providing fire alarm systems, sprinkler systems, extinguishers and training, and Building Warrant of Fitness compliance.',
+  areaServed: { '@type': 'Country', name: 'New Zealand' },
+  serviceType: services.map((s) => s.name),
+});
+---
+<BaseLayout
+  title="CS Fire | Fire Protection & Compliance NZ"
+  description="CS Fire (Control & Service Fire Ltd) designs, installs and maintains fire alarm, sprinkler, extinguisher and compliance systems across New Zealand. Free site audits."
+>
+  <script type="application/ld+json" slot="head" set:html={schema}></script>
+
+  {/* Hero */}
+  <section class="relative overflow-hidden border-b border-ink-700">
+    <div
+      class="absolute inset-0"
+      style="background:
+        radial-gradient(900px 500px at 78% -10%, rgba(237,28,36,.32), transparent 60%),
+        radial-gradient(700px 600px at 0% 120%, rgba(237,28,36,.10), transparent 55%),
+        linear-gradient(180deg,#0C0C0D,#141417)"
+    ></div>
+    <div class="relative mx-auto max-w-6xl px-6 pt-24 pb-26 md:pt-28 md:pb-28">
+      <span class="inline-flex items-center gap-2.5 text-xs font-bold tracking-[0.14em] uppercase bg-red-500/15 border border-red-500/45 px-3.5 py-2 rounded-full">
+        <span class="w-1.5 h-1.5 rounded-full bg-red-500 shadow-[0_0_0_4px_rgba(237,28,36,.25)]"></span>
+        {company.area} · 24/7 emergency response
+      </span>
+      <h1 class="mt-7 text-5xl md:text-[88px] max-w-[13ch]">
+        When fire safety <span class="text-red-500">can't wait</span>.
+      </h1>
+      <p class="mt-6 text-lg md:text-xl text-paper/75 max-w-2xl leading-relaxed">
+        CS Fire designs, installs and maintains fire protection systems that keep your people,
+        property and business compliant — and ready for the moment that matters most.
+      </p>
+      <div class="mt-9 flex flex-wrap gap-3.5">
+        <a href={`${base}/contact`} class="inline-flex items-center gap-2.5 bg-red-500 hover:bg-red-600 text-white px-6 py-3.5 font-bold tracking-wide transition-colors">
+          Book a free site audit
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" aria-hidden="true"><path d="M5 12h13m0 0-5-5m5 5-5 5"/></svg>
+        </a>
+        <a href={`${base}/services`} class="inline-flex items-center border border-ink-600 hover:border-paper text-paper px-6 py-3.5 font-bold tracking-wide transition-colors">
+          Our services
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <StatBar />
+
+  {/* Services */}
+  <section class="mx-auto max-w-6xl px-6 py-22 md:py-24">
+    <div class="flex flex-col md:flex-row md:items-end md:justify-between gap-6 mb-11">
+      <h2 class="text-3xl md:text-5xl">Total fire protection,<br />one trusted team.</h2>
+      <p class="text-muted max-w-sm text-[15px]">
+        From detection to suppression to certification — everything your building needs under one roof.
+      </p>
+    </div>
+    <div class="grid sm:grid-cols-2 gap-4.5" style="gap:18px">
+      {services.map((service) => <ServiceCard service={service} />)}
+    </div>
+  </section>
+
+  <CTABand />
+</BaseLayout>
