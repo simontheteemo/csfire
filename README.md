@@ -75,12 +75,16 @@ npm run preview  # preview the production build
 
 ## Deployment
 
-Mirrors the JD Finance setup:
+**Live at:** https://simontheteemo.github.io/csfire/
 
-1. **GitHub Pages default URL:** set `base: '/csfire'` in `astro.config.mjs`,
-   push to `main`, enable Pages (Source: GitHub Actions).
-2. **Custom domain:** add `public/CNAME`, set `site` to the domain, remove `base`,
-   configure DNS, enable the custom domain in Pages settings.
+The site is hosted on **GitHub Pages** and auto-deploys on every push to `main`
+via `.github/workflows/deploy.yml` (CI runs on PRs via `ci.yml`). No manual steps.
+
+> **Config note:** `base: '/csfire'` is set in `astro.config.mjs` so links/assets
+> resolve under the `/csfire/` project URL. If you later connect a real domain
+> (e.g. `csfire.co.nz`), switch `base` back to `''`, set `site` to the domain, and
+> add a `public/CNAME` file — then configure DNS and enable the custom domain in
+> the repo's Pages settings.
 
 ## License
 
